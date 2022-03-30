@@ -12,6 +12,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         GridView view=findViewById(R.id.myGrid);
-
+//   그리드뷰읽어옴
     }
 }
