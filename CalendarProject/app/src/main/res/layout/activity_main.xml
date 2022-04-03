@@ -5,38 +5,83 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
         <Button
+            android:id="@+id/prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="changeActivity"
             android:text="이전"/>
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="연도-월"/>
         <Button
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="changeActivity"
             android:text="다음"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:background="#8BC34A"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="일"/>
+            android:layout_gravity="center"
+            android:layout_marginRight="45dp"
+            android:text="일" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="월"/>
-            <!--요일 표시부분-맞는 방법인지 확실하지 않음-->
+            android:layout_marginRight="45dp"
+            android:text="월" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:text="화" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:text="수" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:text="목" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:text="금" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:text="토" />
+        <!--요일 표시부분-맞는 방법인지 확실하지 않음-->
     </LinearLayout>
     <GridView
         android:id="@+id/myGrid"
+        android:columnWidth="100dp"
+        android:numColumns="7"
+        android:verticalSpacing="5dp"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </GridView>
