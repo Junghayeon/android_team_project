@@ -89,7 +89,7 @@
         <!--요일 표시부분-맞는 방법인지 확실하지 않음-->
     </LinearLayout>
     <GridView
-        android:id="@+id/myGrid"
+        android:id="@+id/gridview"
         android:numColumns="7"
         android:verticalSpacing="60dp"
         android:gravity="center"
