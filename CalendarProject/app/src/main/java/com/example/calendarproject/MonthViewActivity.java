@@ -24,8 +24,8 @@ public class MonthViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        now = getInstance();
         Calendar cal = getInstance(); //첫번째 요일 구하기위한 객체
+        now = getInstance();
 
         //기능 3. 이전 다음 버튼으로 다른 월의 달력을 표시
         //받은 인텐트가 있으면 그 내용으로 바꾸고, 없으면 바꾸지 않음
@@ -44,7 +44,7 @@ public class MonthViewActivity extends AppCompatActivity {
         ArrayList<String> daysList = new ArrayList<String>();
         int curYear = now.get(YEAR);
         int curMonth = now.get(MONTH)+1; //MONTH는 0부터 시작한다(1월:0 ~ 12월:11)
-        int lastDate = now.getActualMaximum(DATE);
+        int lastDate = now.getActualMaximum(DATE); //달력 마지막날
         cal.set(DATE, 1); //DAY_OF_MONTH를 1로 설정 (월의 첫날)
         int startDay = cal.get(Calendar.DAY_OF_WEEK); //그 주의 요일 반환 (일:1 ~ 토:7)
 
@@ -73,6 +73,10 @@ public class MonthViewActivity extends AppCompatActivity {
         // 어댑터를 GridView 객체에 연결
         gridview.setAdapter(adapt);
 
+        //버튼 사이에 있는 tetview내용을 년도,월로 바꿈
+        TextView title = findViewById(R.id.title);
+        title.setText(curYear+"년 " +curMonth+ "월");
+
         //기능 4. Toast 메세지
         // 항목 선택 이벤트 처리
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,12 +88,13 @@ public class MonthViewActivity extends AppCompatActivity {
                 Toast.makeText(MonthViewActivity.this,
                         curYear+"." +curMonth+ "."+curDay,
                         Toast.LENGTH_SHORT).show();
+
+//                //하연이 코드
+//                Toast.makeText(MonthViewActivity.this,
+//                        curYear+"." +curMonth+ "."+curDay,
+//                        Toast.LENGTH_SHORT).show();
             }
         });
-
-        //버튼 사이에 있는 tetview내용을 년도,월로 바꿈
-        TextView title = findViewById(R.id.title);
-        title.setText(curYear+"년 " +curMonth+ "월");
 
     }
     //기능 3. 이전 다음 버튼으로 다른 월의 달력을 표시
@@ -110,6 +115,4 @@ public class MonthViewActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
     }
-
-
 }
