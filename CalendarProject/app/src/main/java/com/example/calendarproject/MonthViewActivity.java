@@ -1,12 +1,22 @@
 package com.example.calendarproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import androidx.viewpager2.widget.ViewPager2;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MonthViewActivity extends AppCompatActivity {
     ViewPager2 vp; //페이징을 위한 변수
@@ -57,5 +67,10 @@ public class MonthViewActivity extends AppCompatActivity {
             }
         });
         weekPager.setCurrentItem(WFA.ItemCenter); //중간 페이지에서 시작
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 };
