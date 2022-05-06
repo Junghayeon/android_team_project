@@ -11,7 +11,11 @@
         android:theme="@style/Theme.CalendarProject">
         <activity
             android:name=".MonthViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true">
+        <!--configChange:회전해도 현재 화면상태, view 그대로 유지하도록
+            출처: https://holika.tistory.com/entry/-->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,15 +24,6 @@
         </activity>
 
 
-        <activity
-            android:name=".MonthViewActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
 
     </application>
