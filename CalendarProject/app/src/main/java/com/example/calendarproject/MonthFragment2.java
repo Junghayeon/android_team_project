@@ -6,7 +6,6 @@ import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import static java.util.Calendar.getInstance;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +31,7 @@ public class MonthFragment2 extends Fragment {
     ArrayList<String> daysList = new ArrayList<String>();
     Calendar now = getInstance();
     Calendar cal = getInstance();
+    int y, m;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,8 +42,10 @@ public class MonthFragment2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MonthFragment2() {
+    public MonthFragment2(int y, int m) {
         // Required empty public constructor
+        this.y = y;
+        this.m = m;
     }
 
     /**
@@ -55,8 +57,8 @@ public class MonthFragment2 extends Fragment {
      * @return A new instance of fragment MonthFragment2.
      */
     // TODO: Rename and change types and number of parameters
-    public static MonthFragment2 newInstance(String param1, String param2) {
-        MonthFragment2 fragment = new MonthFragment2();
+    public MonthFragment2 newInstance(String param1, String param2) {
+        MonthFragment2 fragment = new MonthFragment2(y, m);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,21 +79,13 @@ public class MonthFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_week, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_month2, container, false);
 
-//        //기능 3. 이전 다음 버튼으로 다른 월의 달력을 표시
-//        //받은 인텐트가 있으면 그 내용으로 바꾸고, 없으면 바꾸지 않음
-//
-//        if (get.getStringExtra("monthData") != null) {
-//            int m = Integer.parseInt(get.getStringExtra("monthData"));
-//            int y = Integer.parseInt(get.getStringExtra("yearData"));
-//            //전달 받은 날짜로 캘린더 객체 수정하기
-//            now.set(MONTH, m);
-//            now.set(YEAR, y);
-//            cal.set(MONTH, m);
-//            cal.set(YEAR, y);
-//        }
-
+        //기능 3. 이전 다음 버튼으로 다른 월의 달력을 표시
+        now.set(MONTH, m);
+        now.set(YEAR, y);
+        cal.set(MONTH, m);
+        cal.set(YEAR, y);
         //기능 2. 현재 날짜 받아와서 GridView에 날짜 뿌려주기
         int curYear = now.get(YEAR);
         //int curDay = now.get(DAY_OF_MONTH);

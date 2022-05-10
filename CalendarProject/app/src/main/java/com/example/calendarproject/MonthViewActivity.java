@@ -8,31 +8,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MonthViewActivity extends AppCompatActivity {
     ViewPager2 vp; //페이징을 위한 변수
+    int y,m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MonthFragment2()).commit();
-
+//        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MonthFragment2(y, m)).commit();
         vp=findViewById(R.id.vpPager); //xml파일의 vpPager가져오기
-        //일단 처음 시작할때 주간달력이 보이도록 설정해두었음
-//        setWeekPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
+        //일단 처음 시작할때 월간달력이 보이도록 설정해두었음
+        setMonthPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
 
     }
     //메뉴바를 동적 추가하는 부분
@@ -48,21 +37,26 @@ public class MonthViewActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             //02. 월간 달력 프레그먼트
             case R.id.action_monthActivity:
-//                setMonthPager(vp);
+                setMonthPager(vp);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+
             //03. 주간 달력 프레그먼트
             case R.id.action_weekActivity:
                 setWeekPager(vp);
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     //월간 페이지 어댑터 설정 함수
-//    private void setMonthPager(ViewPager2 vp) {
-//        ViewPager2 monthPager = vp;
-//    }
+    private void setMonthPager(ViewPager2 vp) {
+        ViewPager2 monthPager = vp;
+        MonthPagerAdapter MFA = new MonthPagerAdapter(this);
+        monthPager.setAdapter(MFA);
+
+        monthPager.setCurrentItem(5);
+    }
 
     //주간 페이지 어댑터 설정 함수
     private void setWeekPager(ViewPager2 vp) {
