@@ -4,6 +4,9 @@ import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 import static java.util.Calendar.getInstance;
 
+import android.content.ClipData;
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
@@ -12,24 +15,17 @@ import java.util.Calendar;
 
 public class MonthPagerAdapter extends FragmentStateAdapter {
     private static int NUM_ITEMS=10; //기본 갯수
-    int ItemCenter=5;
-    Calendar now= getInstance();
-    int y = now.get(YEAR);
-    int m = now.get(MONTH);
-//    MonthFragment2 weekC;
+    int ItemCenter=4;
 
     public MonthPagerAdapter(MonthViewActivity fa) {
         super(fa);
-//        weekC=new WeekCalendar(ItemCenter);
-//        fa.getSupportActionBar().setTitle(toString(ItemCenter)); //처음 시작화면의 메뉴바 텍스트 설정
     }
 
     // 각 페이지를 나타내는 프래그먼트 반환
     @Override
     public Fragment createFragment(int position) {
-//        weekC.makeCalendarData(position);
-        m=m+(position-ItemCenter);
-        MonthFragment2 fragment=new MonthFragment2(y,m);
+
+        MonthFragment2 fragment=new MonthFragment2(position, ItemCenter);
         return fragment;
     }
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MonthFragment2">
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,13 +58,25 @@
             android:layout_weight="1"
             android:text="토" />
     </LinearLayout>
-    <GridView
-        android:id="@+id/MONTH_monthgrid"
-        android:numColumns="7"
-        android:verticalSpacing="60dp"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-    </GridView>
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <GridView
+            android:id="@+id/MONTH_monthgrid"
+            android:numColumns="7"
+            android:stretchMode="columnWidth"
+            android:clickable="true"
+            android:verticalSpacing="1dp"
+            android:horizontalSpacing="1dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:variablePadding="false"
+            android:padding="1dp"
+            android:background="#000000"
+            android:scrollbars="none">
+        </GridView>
+    </LinearLayout>
+</LinearLayout>

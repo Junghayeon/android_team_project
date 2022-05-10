@@ -39,7 +39,6 @@ public class MonthViewActivity extends AppCompatActivity {
             case R.id.action_monthActivity:
                 setMonthPager(vp);
                 return true;
-
             //03. 주간 달력 프레그먼트
             case R.id.action_weekActivity:
                 setWeekPager(vp);
@@ -55,7 +54,16 @@ public class MonthViewActivity extends AppCompatActivity {
         MonthPagerAdapter MFA = new MonthPagerAdapter(this);
         monthPager.setAdapter(MFA);
 
-        monthPager.setCurrentItem(5);
+        //페이지 변경 이벤트 리스너
+//        monthPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                //메뉴바의 글자를 바꾸는 부분(연도-월 표시 변경)
+//                MonthViewActivity.this.getSupportActionBar().setTitle(MFA.toString(position));
+//                //출처: 액션바 텍스트 바꾸기 https://m.blog.naver.com/dhdnjswnd/221665442594
+//            }
+//        });
+        monthPager.setCurrentItem(MFA.ItemCenter);
     }
 
     //주간 페이지 어댑터 설정 함수
