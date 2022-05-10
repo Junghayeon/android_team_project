@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.util.Log;
@@ -25,9 +28,11 @@ public class MonthViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MonthFragment2()).commit();
+
         vp=findViewById(R.id.vpPager); //xml파일의 vpPager가져오기
         //일단 처음 시작할때 주간달력이 보이도록 설정해두었음
-        setWeekPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
+//        setWeekPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
 
     }
     //메뉴바를 동적 추가하는 부분
@@ -36,21 +41,28 @@ public class MonthViewActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     //메뉴바의 아이템이 클릭되었을때-이 부분에서 월별/주별 달력 전환함
     public boolean onOptionsItemSelected(MenuItem item) {
         //클릭한 메뉴 item id를 읽어옴
         switch (item.getItemId()) {
             //02. 월간 달력 프레그먼트
             case R.id.action_monthActivity:
+//                setMonthPager(vp);
                 return true;
+            default:
+                return super.onOptionsItemSelected(item);
             //03. 주간 달력 프레그먼트
             case R.id.action_weekActivity:
                 setWeekPager(vp);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
+
+    //월간 페이지 어댑터 설정 함수
+//    private void setMonthPager(ViewPager2 vp) {
+//        ViewPager2 monthPager = vp;
+//    }
 
     //주간 페이지 어댑터 설정 함수
     private void setWeekPager(ViewPager2 vp) {
@@ -68,9 +80,6 @@ public class MonthViewActivity extends AppCompatActivity {
         });
         weekPager.setCurrentItem(WFA.ItemCenter); //중간 페이지에서 시작
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
+
 };

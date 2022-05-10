@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarProject">
-        <activity
-            android:name=".MonthViewActivity"
+        <activity android:name=".MonthViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true">
         <!--configChange:회전해도 현재 화면상태, view 그대로 유지하도록
