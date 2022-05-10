@@ -70,4 +70,3 @@
         android:layout_weight="1">
     </GridView>
 </LinearLayout>
-

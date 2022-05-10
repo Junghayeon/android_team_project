@@ -62,11 +62,6 @@ public class MonthAdapter extends BaseAdapter {
         TextView day = (TextView) convertView;
         // 어댑터가 관리하는 항목 데이터 중에서 position 위치의 항목의 문자열을 설정 텍스트뷰 객체에 설정
         day.setText(mItems.get(position));
-        if(position==select) { //position과 선택이 일치하면 CYAN색으로--다
-            day.setBackgroundColor(Color.CYAN);
-        }else{ //선택되지 않은 뷰는 WHITE로
-            day.setBackgroundColor(Color.WHITE);
-        }//스크롤 재사용을 막기위한 부분 출처:https://m.blog.naver.com/heefe92/221054088347
 
         Display display = MA.getWindowManager().getDefaultDisplay();
         Point size = new Point();
