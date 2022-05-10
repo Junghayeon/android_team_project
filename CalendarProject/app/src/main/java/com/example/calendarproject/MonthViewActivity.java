@@ -18,7 +18,6 @@ public class MonthViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new MonthFragment2(y, m)).commit();
         vp=findViewById(R.id.vpPager); //xml파일의 vpPager가져오기
         //일단 처음 시작할때 월간달력이 보이도록 설정해두었음
         setMonthPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
@@ -54,8 +53,16 @@ public class MonthViewActivity extends AppCompatActivity {
         ViewPager2 monthPager = vp;
         MonthPagerAdapter MFA = new MonthPagerAdapter(this);
         monthPager.setAdapter(MFA);
+        monthPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                //메뉴바의 글자를 바꾸는 부분(연도-월 표시 변경)
+                MonthViewActivity.this.getSupportActionBar().setTitle(MFA.toString(position));
+                //출처: 액션바 텍스트 바꾸기 https://m.blog.naver.com/dhdnjswnd/221665442594
+            }
+        });
 
-        monthPager.setCurrentItem(5);
+        monthPager.setCurrentItem(MFA.ItemCenter);
     }
 
     //주간 페이지 어댑터 설정 함수

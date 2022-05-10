@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MonthFragment2">
-
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:background="#8BC34A"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:text="일" />
 
         <TextView
@@ -62,10 +61,13 @@
     <GridView
         android:id="@+id/MONTH_monthgrid"
         android:numColumns="7"
-        android:verticalSpacing="60dp"
+        android:verticalSpacing="1dp"
+        android:horizontalSpacing="1dp"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/purple_700"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     </GridView>
+</LinearLayout>
 
-</FrameLayout>

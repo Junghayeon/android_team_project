@@ -44,7 +44,7 @@ public class WeekCalendar {
     public String toString(int position){
         int start=startDay();
         now.set(DATE,start+7*(position-center)); //중심 포지션를 기준으로 곱함
-        return now.get(YEAR)+"년 "+(now.get(MONTH)+1)+"월 "+now.get(DATE)+"일";
+        return now.get(YEAR)+"년 "+(now.get(MONTH)+1)+"월 "+now.get(DATE);
     }
     public int startDay(){ //현재 날짜 기준으로 일요일(시작일) 반환
         now=getInstance(); //현재 날짜로 초기화 후
