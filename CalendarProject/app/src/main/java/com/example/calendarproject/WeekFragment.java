@@ -99,7 +99,7 @@ public class WeekFragment extends Fragment {
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
                 //setScrollY함수의 매개변수는 픽셀값이라 dp값을 읽어와 계산해줌
                 //아이템의 높이 dp가 50
-                list.setScrollY(i/7* dpToPx(50));//list와 grid의 스크롤 값은 7배 차이 + px값만큼 곱함
+                list.setScrollY(i/7* getResources().getDimensionPixelSize(R.dimen.size_50dp));//list와 grid의 스크롤 값은 7배 차이 + px값만큼 곱함
             }
             //https://ddolcat.tistory.com/95 스크롤 함수에 대한 정보
         });
