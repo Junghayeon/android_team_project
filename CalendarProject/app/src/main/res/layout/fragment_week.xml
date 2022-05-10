@@ -98,5 +98,6 @@
             android:scrollbars="none"
             >
         </GridView>
+<!--        https://m.blog.naver.com/0511kwon/60128524865 그리드뷰 테두리-->
     </LinearLayout>
 </LinearLayout>

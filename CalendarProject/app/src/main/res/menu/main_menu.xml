@@ -1,6 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="test"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:title="test">
     <item
         android:id="@+id/action_monthActivity"
         android:title="월"/>

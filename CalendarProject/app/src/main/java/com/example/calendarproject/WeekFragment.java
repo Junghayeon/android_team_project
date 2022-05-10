@@ -32,8 +32,6 @@ public class WeekFragment extends Fragment {
     }
     //생성시 달력에 대한 데이터 3개를 받음
     public WeekFragment(ArrayList<String> w, ArrayList<String> d, ArrayList<String> t) {
-        // Required empty public constructor
-        Log.d("kuku", "WeekFragment: ");
         weekList=w;
         daysList=d;
         timesList=t;
@@ -52,7 +50,7 @@ public class WeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_week, container, false);
-        //Log.d("kuku", "onCreateView: ");
+
         //커스텀 어댑터를 weekAdater 사용하여 주를 표시하는 그리드뷰와 연결
         WeekAdapter weekAdapt = new WeekAdapter(getActivity(), R.layout.week_item, weekList);
         GridView weekGrid = (GridView) rootView.findViewById(R.id.WEEK_weekgrid);
@@ -74,7 +72,7 @@ public class WeekFragment extends Fragment {
                 for(int i=0;i<weekAdapt.getCount();i++) {
                     parent.getChildAt(i).setBackgroundColor(Color.WHITE);
                 }
-                v.setBackgroundColor(Color.CYAN);//Color.parseColor("#008B8B")); //dark cyan
+                v.setBackgroundColor(Color.CYAN);
             }
         });
         dayGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
