@@ -56,6 +56,7 @@ public class MonthViewActivity extends AppCompatActivity {
         //출처: https://itpangpang.tistory.com/266 [ITPangPang]
         MonthPagerAdapter MFA = new MonthPagerAdapter(this);
         monthPager.setAdapter(MFA);
+
         monthPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
