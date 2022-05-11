@@ -21,14 +21,12 @@ public class MonthAdapter extends BaseAdapter {
     private int mResource;
     ArrayList<String> mItems;
     int select;
-    MonthViewActivity MA;
 
-    public MonthAdapter(Context context, int resource, ArrayList<String> items,MonthViewActivity ma,int date) {
+    public MonthAdapter(Context context, int resource, ArrayList<String> items,int date) {
         mContext = context;
         mItems = items;
         mResource = resource; //디자인-xml파일
         select=date;
-        MA=ma;
         Log.d("kuku", "MonthAdapter: "+date);
     }
 
@@ -68,13 +66,9 @@ public class MonthAdapter extends BaseAdapter {
             day.setBackgroundColor(Color.WHITE);
         }//스크롤 재사용을 막기위한 부분 출처:https://m.blog.naver.com/heefe92/221054088347
 
-        Display display = MA.getWindowManager().getDefaultDisplay();  //새롭게 그릴때마다 화면크기를 확인하도록함
-        Point size = new Point();
-        display.getRealSize(size);
-        day.setWidth((size.x)/7);
-        day.setHeight((size.y)/7);
+        day.setWidth((parent.getWidth())/7);
+        day.setHeight((parent.getHeight())/6);
         //https://readystory.tistory.com/111 디바이스 화면 구하기
         return convertView;
-
     }
 }

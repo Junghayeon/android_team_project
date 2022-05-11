@@ -84,7 +84,7 @@ public class MonthFragment extends Fragment {
             }
         }
         MonthAdapter adapt=new MonthAdapter(getActivity(), R.layout.month_item, daysList,
-                (MonthViewActivity) getActivity(),startDay-1);
+                startDay-1);
         //회전시 크기에 맞게 뷰를 조정하기 위해 getActivity전달, 시작 요일은 1부터 시작하는데 뷰의 포지션은 0부터라서
         // id를 바탕으로 화면 레이아웃에 정의된 GridView 객체 로딩
         GridView gridview = (GridView) rootView.findViewById(R.id.MONTH_monthgrid);

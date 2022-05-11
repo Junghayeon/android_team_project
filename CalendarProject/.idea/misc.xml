@@ -24,6 +24,10 @@
         <entry key="..\:/Users/jessi/git/AndroidTeamProject/CalendarProject/app/src/main/res/menu/main_menu.xml" value="0.359375" />
         <entry key="..\:/Users/jessi/git/AndroidTeamProject/CalendarProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.125" />
         <entry key="..\:/Users/jessi/git/AndroidTeamProject/CalendarProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2585" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/TTT/AndroidTeamProject/CalendarProject/app/src/main/res/layout/fragment_month.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/TTT/AndroidTeamProject/CalendarProject/app/src/main/res/layout/fragment_week.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/TTT/AndroidTeamProject/CalendarProject/app/src/main/res/layout/month_item.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/TTT/AndroidTeamProject/CalendarProject/app/src/main/res/layout/week_item.xml" value="0.11246200607902736" />
       </map>
     </option>
   </component>
