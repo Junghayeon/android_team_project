@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <GridView
         android:id="@+id/WEEK_weekgrid"
         android:numColumns="7"
@@ -18,7 +19,7 @@
         <ListView
             android:id="@+id/WEEK_timelist"
             android:scrollingCache="true"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/size_50dp"
             android:layout_height="1200dp"
             android:dividerHeight="0px"
             android:padding="0dp"

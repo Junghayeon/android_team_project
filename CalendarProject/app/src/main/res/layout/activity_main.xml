@@ -58,6 +58,7 @@
                 android:layout_weight="1"
                 android:text="토" />
         </LinearLayout>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpPager"
         android:layout_width="match_parent"

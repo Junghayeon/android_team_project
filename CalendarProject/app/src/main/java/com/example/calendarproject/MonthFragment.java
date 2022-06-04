@@ -43,7 +43,6 @@ public class MonthFragment extends Fragment {
         now.set(MONTH, m); //현재 날짜에서 월정보 변경
         y=now.get(YEAR);
         m=now.get(MONTH);
-        //Log.d("KUKU", "MonthFragment: "+y+" "+m);
     }
 
     // TODO: Rename and change types and number of parameters
@@ -65,22 +64,18 @@ public class MonthFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_month, container, false);
 
-        //기능 3. 이전 다음 버튼으로 다른 월의 달력을 표시
-
-        //기능 2. 현재 날짜 받아와서 GridView에 날짜 뿌려주기
         int curYear = now.get(YEAR);
-        //int curDay = now.get(DAY_OF_MONTH);
         int curMonth = now.get(MONTH) + 1; //MONTH는 0부터 시작한다(1월:0 ~ 12월:11)
         int lastDate = now.getActualMaximum(DATE);
         cal.set(curYear, now.get(MONTH), 1); //DAY_OF_MONTH를 1로 설정 (월의 첫날)
         int startDay = cal.get(DAY_OF_WEEK); //그 주의 요일 반환 (일:1 ~ 토:7)
-        Log.d("KUKU", "onCreateView: "+lastDate);
         cal.set(DATE, 1); //DAY_OF_MONTH를 1로 설정 (월의 첫날)
+        int curDay=cal.get(DATE);
 
         //daysList에 날짜 채워넣기
-        for (int i = 1; i <= 42; i++) {
+        for (int i = 1; i <= 42; i++) { //7*6칸이 되도록
             //달의 첫일(1일)의 요일보다 작을 시 공백 채워넣기
-            if (i < startDay||i>=lastDate+startDay) {
+            if (i < startDay||i>=lastDate+startDay) { //날짜가 아닌 부분은 공백처리
                 daysList.add(" ");
             } else {
                 daysList.add(String.valueOf(i - startDay + 1));
@@ -88,9 +83,9 @@ public class MonthFragment extends Fragment {
                 //(요일은 1부터 시작>0일을 만들지 않기 위해 +1)
             }
         }
-
-        MonthAdapter adapt=new MonthAdapter(getActivity(), R.layout.month_item, daysList, (MonthViewActivity) getActivity());
-        //어댑터 준비 (배열 객체 이용, simple_list_item_1 리소스 사용
+        MonthAdapter adapt=new MonthAdapter(getActivity(), R.layout.month_item, daysList,
+                startDay-1);
+        //회전시 크기에 맞게 뷰를 조정하기 위해 getActivity전달, 시작 요일은 1부터 시작하는데 뷰의 포지션은 0부터라서
         // id를 바탕으로 화면 레이아웃에 정의된 GridView 객체 로딩
         GridView gridview = (GridView) rootView.findViewById(R.id.MONTH_monthgrid);
         // 어댑터를 GridView 객체에 연결
@@ -122,9 +117,5 @@ public class MonthFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return rootView;
-    }
-    public int dpToPx(int sizeDP){
-        int pxVal=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,sizeDP,getResources().getDisplayMetrics());
-        return pxVal; //https://chebaum.tistory.com/13 dp를 px로 바꾸는 함수
     }
 }
