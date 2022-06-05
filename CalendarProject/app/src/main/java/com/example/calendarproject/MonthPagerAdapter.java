@@ -13,7 +13,7 @@ public class MonthPagerAdapter extends FragmentStateAdapter {
     private static int NUM_ITEMS=3; //기본 갯수
     int ItemCenter=getItemCount()/2;
 
-    public MonthPagerAdapter(MonthViewActivity fa) {
+    public MonthPagerAdapter(MainActivity fa) {
         super(fa);
         fa.getSupportActionBar().setTitle(toString(ItemCenter)); //처음 시작화면의 메뉴바 텍스트 설정
     }

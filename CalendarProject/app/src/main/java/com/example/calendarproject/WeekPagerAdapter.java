@@ -1,7 +1,5 @@
 package com.example.calendarproject;
 
-import android.util.Log;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
@@ -9,7 +7,7 @@ public class WeekPagerAdapter extends FragmentStateAdapter {
     private static int NUM_ITEMS=3; //기본 갯수
     int ItemCenter=getItemCount()/2;
     WeekCalendar weekC;
-    public WeekPagerAdapter(MonthViewActivity fa) {
+    public WeekPagerAdapter(MainActivity fa) {
         super(fa);
         weekC=new WeekCalendar(ItemCenter);
         fa.getSupportActionBar().setTitle(toString(ItemCenter)); //처음 시작화면의 메뉴바 텍스트 설정

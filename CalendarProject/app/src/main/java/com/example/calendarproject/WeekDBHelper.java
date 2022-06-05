@@ -73,16 +73,18 @@ public class WeekDBHelper extends SQLiteOpenHelper {
                 WeekContract.Weeks.KEY_HOUR,hour);
         getWritableDatabase().execSQL(sql);
     }
-    public void updateCalBySQL(String title, String start, String end, String address, String memo, String info,String hour){
+    public void updateCalBySQL(String title, String start, String end, String address,
+                               String memo, String info,String hour,String newHour){
         try {
             String sql = String.format(
-                    "UPDATE  %s SET %s = '%s',%s = '%s',%s = '%s',%s = '%s',%s = '%s' WHERE %s = '%s' AND %s = '%s'",
+                    "UPDATE  %s SET %s = '%s',%s = '%s',%s = '%s',%s = '%s',%s = '%s',%s = '%s' WHERE %s = '%s' AND %s = '%s'",
                     WeekContract.Weeks.TABLE_NAME,
                     WeekContract.Weeks.KEY_TITLE,title,
                     WeekContract.Weeks.KEY_START,start,
                     WeekContract.Weeks.KEY_END,end,
                     WeekContract.Weeks.KEY_ADDRESS,address,
                     WeekContract.Weeks.KEY_MEMO,memo,
+                    WeekContract.Weeks.KEY_HOUR,newHour,
                     WeekContract.Weeks.KEY_CAL,info,
                     WeekContract.Weeks.KEY_HOUR,hour);
 
