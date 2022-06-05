@@ -46,6 +46,11 @@ public class WeekCalendar {
         now.set(DATE,start+7*(position-center)); //중심 포지션를 기준으로 곱함
         return now.get(YEAR)+"년 "+(now.get(MONTH)+1)+"월 ";
     }
+    public String getYMD(int PagePos,int ItemPos){
+        int start=startDay();
+        now.set(DATE,start+7*(PagePos-center)+ItemPos%7); //중심 포지션를 기준으로 곱함
+        return now.get(YEAR)+"년 "+(now.get(MONTH)+1)+"월 "+(now.get(DATE))+"일 ";
+    }
     public int startDay(){ //현재 날짜 기준으로 일요일(시작일) 반환
         now=getInstance(); //현재 날짜로 초기화 후
         int curDay= now.get(DATE);  //now는 매번 현재값을 가리켜야함

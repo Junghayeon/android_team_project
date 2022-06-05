@@ -23,11 +23,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MonthFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class MonthFragment extends Fragment {
 
     ArrayList<String> daysList = new ArrayList<String>();
@@ -35,23 +31,29 @@ public class MonthFragment extends Fragment {
     Calendar cal = getInstance();
     int y;
     int m;
+    MainActivity main;
+    int PagePos;
+    WeekDBHelper mDbHelper;
 
-    public MonthFragment(int position, int ItemCenter) {
+    public MonthFragment(int position, int ItemCenter,MainActivity main) {
         // Required empty public constructor
         m=now.get(MONTH); //매번 get해줘야 현재 월의 정보가 담김
         m=m+(position-ItemCenter);
         now.set(MONTH, m); //현재 날짜에서 월정보 변경
         y=now.get(YEAR);
         m=now.get(MONTH);
+        this.main= main;
+        mDbHelper = new WeekDBHelper(main);
+        PagePos=position;
     }
-
-    // TODO: Rename and change types and number of parameters
-    public MonthFragment newInstance(String param1, String param2) {
-        MonthFragment fragment = new MonthFragment(y, m);
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+//
+//    // TODO: Rename and change types and number of parameters
+//    public MonthFragment newInstance(String param1, String param2) {
+//        MonthFragment fragment = new MonthFragment(y, m);
+//        Bundle args = new Bundle();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +86,7 @@ public class MonthFragment extends Fragment {
             }
         }
         MonthAdapter adapt=new MonthAdapter(getActivity(), R.layout.month_item, daysList,
-                startDay-1);
+                startDay-1,main,PagePos);
         //회전시 크기에 맞게 뷰를 조정하기 위해 getActivity전달, 시작 요일은 1부터 시작하는데 뷰의 포지션은 0부터라서
         // id를 바탕으로 화면 레이아웃에 정의된 GridView 객체 로딩
         GridView gridview = (GridView) rootView.findViewById(R.id.MONTH_monthgrid);
@@ -97,7 +99,6 @@ public class MonthFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 //position은 0부터 시작, 첫요일만큼 빼준다
-                v.setBackgroundColor(Color.WHITE);
                 int curDay = position + 1 - startDay + 1;
 
                 if (curDay > 0) { //공백부분은 토스트 메세지 없도록
@@ -106,10 +107,11 @@ public class MonthFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                     for(int i=0;i<adapt.getCount();i++) {
 
-                        v.setBackgroundColor(Color.CYAN);
                         parent.getChildAt(i).setBackgroundColor(Color.WHITE);
                     }
+                    adapt.select=position;
                     v.setBackgroundColor(Color.CYAN);
+                    ((OnDetailSelectListener)getActivity()).onDetailSelect(position,Integer.toString(curDay),0);
                 }
 
             }
@@ -117,5 +119,8 @@ public class MonthFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return rootView;
+    }
+    public interface OnDetailSelectListener{
+        public void onDetailSelect(int position,String day,int Time);
     }
 }

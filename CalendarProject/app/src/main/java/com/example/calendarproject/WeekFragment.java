@@ -26,15 +26,19 @@ public class WeekFragment extends Fragment {
     private ArrayList<String> daysList;
     private ArrayList<String> timesList;
     private View NULL;
+    MainActivity m;
+    int PagePos;
 
     public WeekFragment() {
         // Required empty public constructor
     }
     //생성시 달력에 대한 데이터 3개를 받음
-    public WeekFragment(ArrayList<String> w, ArrayList<String> d, ArrayList<String> t) {
+    public WeekFragment(ArrayList<String> w, ArrayList<String> d, ArrayList<String> t,MainActivity m,int p) {
         weekList=w;
         daysList=d;
         timesList=t;
+        this.m=m;
+        PagePos=p;
     }
     public static WeekFragment newInstance(String param1, String param2) {
         WeekFragment fragment = new WeekFragment();
@@ -52,12 +56,12 @@ public class WeekFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_week, container, false);
 
         //커스텀 어댑터를 weekAdater 사용하여 주를 표시하는 그리드뷰와 연결
-        WeekAdapter weekAdapt = new WeekAdapter(getActivity(), R.layout.week_item, weekList);
+        WeekAdapter weekAdapt = new WeekAdapter(getActivity(), R.layout.week_item, weekList,m,PagePos);
         GridView weekGrid = (GridView) rootView.findViewById(R.id.WEEK_weekgrid);
         weekGrid.setAdapter(weekAdapt);
 
         //커스텀 어댑터를 weekAdater 사용하여 주간 달력을 표시하는 그리드뷰와 연결
-        WeekAdapter dayAdapt=new WeekAdapter(getActivity(), R.layout.week_item, daysList);
+        WeekAdapter dayAdapt=new WeekAdapter(getActivity(), R.layout.week_item, daysList,m,PagePos);
         GridView dayGrid = (GridView) rootView.findViewById(R.id.WEEK_daygrid);
         dayGrid.setAdapter(dayAdapt);
 
@@ -89,6 +93,7 @@ public class WeekFragment extends Fragment {
                 weekGrid.getChildAt(position%7).setBackgroundColor(Color.CYAN);//position%7을 하면 0~6의 값이 나온다
                 dayAdapt.select=position;
                 v.setBackgroundColor(Color.CYAN);
+                ((MonthFragment.OnDetailSelectListener)getActivity()).onDetailSelect(position,"0",(position/7));
             }// https://128june.tistory.com/m/51 전체 흰색으로 바꾸고 실행
         });
         //달력 스크롤 이벤트-스크롤 될때 시간 리스트도 함께 움직이도록
@@ -104,10 +109,5 @@ public class WeekFragment extends Fragment {
             //https://ddolcat.tistory.com/95 스크롤 함수에 대한 정보
         });
         return rootView;
-    }
-    //dp를 px로 변환하는 함수
-    public int dpToPx(int sizeDP){
-        int pxVal=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,sizeDP,getResources().getDisplayMetrics());
-        return pxVal; //https://chebaum.tistory.com/13 dp를 px로 바꾸는 함수
     }
 }

@@ -1,12 +1,14 @@
 package com.example.calendarproject;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,12 +18,17 @@ public class WeekAdapter extends BaseAdapter {
     private int mResource;
     ArrayList<String> mItems;
     int select;
-
-    public WeekAdapter(Context context, int resource, ArrayList<String> items) {
+    MainActivity m;
+    WeekDBHelper mDbHelper;
+    int PagePos;
+    public WeekAdapter(Context context,int resource, ArrayList<String> items, MainActivity m,int p) {
         mContext = context;
         mItems = items;
         mResource = resource; //디자인-xml파일
         select=0;
+        this.m= m;
+        mDbHelper = new WeekDBHelper(m);
+        PagePos=p;
     }
 
     // MyAdapter 클래스가 관리하는 항목의 총 개수를 반환
@@ -53,7 +60,17 @@ public class WeekAdapter extends BaseAdapter {
         // convertView 변수로 참조되는 항목 뷰 객체내에 포함된 텍스트뷰 객체를 id를 통해 얻어옴
         TextView name = (TextView) convertView.findViewById(R.id.WEEK_itemText);
         // 어댑터가 관리하는 항목 데이터 중에서 position 위치의 항목의 문자열을 설정 텍스트뷰 객체에 설정
-        name.setText(mItems.get(position));
+        if(getCount()==7)//일을 표시하는 부분
+            name.setText((String)getItem(position));
+        else{
+            String t;
+            //.d("kuku", "CheckDB In getView: "+m.vp.getCurrentItem());
+            if((t=CheckDB(position))!=null){
+                name.setText(t);
+            }else
+                name.setText(" ");
+        }
+
         if(position==select) { //position과 선택이 일치하면 CYAN색으로--다
             name.setBackgroundColor(Color.CYAN);
         }else{ //선택되지 않은 뷰는 WHITE로
@@ -66,5 +83,17 @@ public class WeekAdapter extends BaseAdapter {
         return convertView;
 
     }
+    private String CheckDB(int position){
+        //setCurrentItem할때 이전 프레그먼트도 미리 만드는데 매번 DB에 접근하지 않도록 제어
+        if(PagePos==m.vp.getCurrentItem()||PagePos==m.vp.getCurrentItem()-1||PagePos==m.vp.getCurrentItem()+1){
+            String searchS = m.WFA.weekC.getYMD(PagePos, position);
+            Cursor cursor = mDbHelper.getCalHourBySQL(searchS,((position / 7) + "시"));
 
+            if (cursor.moveToNext()) {
+                Log.d("kuku", "CheckDB: "+position);
+                return cursor.getString(1);
+            }
+        }
+        return null;
+    }
 }

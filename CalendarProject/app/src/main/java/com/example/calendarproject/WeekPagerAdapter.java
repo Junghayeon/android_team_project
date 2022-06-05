@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class WeekPagerAdapter extends FragmentStateAdapter {
-    private static int NUM_ITEMS=3; //기본 갯수
+    private static int NUM_ITEMS=0; //기본 갯수
     int ItemCenter=getItemCount()/2;
     WeekCalendar weekC;
-    public WeekPagerAdapter(MonthViewActivity fa) {
+    MainActivity m;
+    public WeekPagerAdapter(MainActivity fa) {
         super(fa);
+        this.m=fa;
         weekC=new WeekCalendar(ItemCenter);
         fa.getSupportActionBar().setTitle(toString(ItemCenter)); //처음 시작화면의 메뉴바 텍스트 설정
     }
@@ -18,8 +20,9 @@ public class WeekPagerAdapter extends FragmentStateAdapter {
     // 각 페이지를 나타내는 프래그먼트 반환
     @Override
     public Fragment createFragment(int position) {
+        Log.d("kuku", "createFragment: "+position);
         weekC.makeCalendarData(position);
-        WeekFragment fragment=new WeekFragment(weekC.getWeekList(),weekC.getDaysList(), weekC.getTimesList());
+        WeekFragment fragment=new WeekFragment(weekC.getWeekList(),weekC.getDaysList(), weekC.getTimesList(),m,position);
         return fragment;
     }
     //https://bbulog.tistory.com/34 무한 페이지를 위해 참조한 블로그
@@ -31,4 +34,5 @@ public class WeekPagerAdapter extends FragmentStateAdapter {
     public String toString(int position){
         return weekC.toString(position);
     }
+
 }
