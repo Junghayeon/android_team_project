@@ -3,19 +3,25 @@ package com.example.calendarproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MonthViewActivity extends AppCompatActivity {
     ViewPager2 vp; //페이징을 위한 변수
     int y,m;
+    FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +29,16 @@ public class MonthViewActivity extends AppCompatActivity {
         vp=findViewById(R.id.vpPager); //xml파일의 vpPager가져오기
         //일단 처음 시작할때 월간달력이 보이도록 설정해두었음
         setMonthPager(vp);//액티비티 시작시 weeKFragmentAdater와 연결함(아래 함수있음)
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MonthViewActivity.this, ScheduleActivity.class);
+                startActivity(intent); //액티비티 열기
+            }
+        });
     }
+
     //메뉴바를 동적 추가하는 부분
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
